@@ -17,7 +17,7 @@ import com.zhongxin.quartz.util.Const;
 import com.zhongxin.quartz.util.ExceptionUtils;
 import com.zhongxin.quartz.util.SpringContext;
 
-@DisallowConcurrentExecution
+@DisallowConcurrentExecution//保证多个任务间不会同时执行.所以在多任务执行时最好加上
 public class QuartzJobFactory implements Job {
 
 	protected Logger logger = Logger.getLogger(this.getClass());

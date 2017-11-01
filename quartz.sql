@@ -4,22 +4,22 @@
 DROP TABLE IF EXISTS `quartz_task_informations`;
 CREATE TABLE `quartz_task_informations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `version` int(11) NOT NULL COMMENT '°æ±¾ºÅ£ºĞèÒªÀÖ¹ÛËø¿ØÖÆ',
-  `taskNo` varchar(64) NOT NULL COMMENT 'ÈÎÎñ±àºÅ',
-  `taskName` varchar(64) NOT NULL COMMENT 'ÈÎÎñÃû³Æ',
-  `schedulerRule` varchar(64) NOT NULL COMMENT '¶¨Ê±¹æÔò±í´ïÊ½',
-  `frozenStatus` varchar(16) NOT NULL COMMENT '¶³½á×´Ì¬',
-  `executorNo` varchar(128) NOT NULL COMMENT 'Ö´ĞĞ·½',
-  `frozenTime` bigint(13) DEFAULT NULL COMMENT '¶³½áÊ±¼ä',
-  `unfrozenTime` bigint(13) DEFAULT NULL COMMENT '½â¶³Ê±¼ä',
-  `createTime` bigint(13) NOT NULL COMMENT '´´½¨Ê±¼ä',
-  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT '×î½üĞŞ¸ÄÊ±¼ä',
-  `sendType` varchar(64) DEFAULT NULL COMMENT '·¢ËÍ·½Ê½',
-  `url` varchar(64) DEFAULT NULL COMMENT 'ÇëÇóµØÖ·',
-  `executeParamter` varchar(2000) DEFAULT NULL COMMENT 'Ö´ĞĞ²ÎÊı',
+  `version` int(11) NOT NULL COMMENT 'ç‰ˆæœ¬å·',
+  `taskNo` varchar(64) NOT NULL COMMENT 'ä»»åŠ¡åºåˆ—å·',
+  `taskName` varchar(64) NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `schedulerRule` varchar(64) NOT NULL COMMENT 'è°ƒåº¦è®¡åˆ’',
+  `frozenStatus` varchar(16) NOT NULL COMMENT 'å†»ç»“çŠ¶æ€',
+  `executorNo` varchar(128) NOT NULL COMMENT 'æ‰§è¡Œç¼–å·',
+  `frozenTime` bigint(13) DEFAULT NULL COMMENT 'å†»ç»“æ—¶é—´',
+  `unfrozenTime` bigint(13) DEFAULT NULL COMMENT 'è§£å†»æ—¶é—´',
+  `createTime` bigint(13) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT 'æœ€åä¿®æ”¹æ—¶é—´',
+  `sendType` varchar(64) DEFAULT NULL COMMENT 'å‘é€ç±»å‹',
+  `url` varchar(64) DEFAULT NULL COMMENT 'åœ°å€',
+  `executeParamter` varchar(2000) DEFAULT NULL COMMENT 'æ‰§è¡Œå‚æ•°',
   `timeKey` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='¶¨Ê±ÈÎÎñĞÅÏ¢±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='id';
 
 
 -- ----------------------------
@@ -28,17 +28,17 @@ CREATE TABLE `quartz_task_informations` (
 DROP TABLE IF EXISTS `quartz_task_records`;
 CREATE TABLE `quartz_task_records` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `taskNo` varchar(64) NOT NULL COMMENT 'ÈÎÎñ±àºÅ',
-  `timeKeyValue` varchar(32) DEFAULT NULL COMMENT 'Ö´ĞĞÊ±¼ä¸ñÊ½Öµ',
-  `executeTime` bigint(13) NOT NULL COMMENT 'Ö´ĞĞÊ±¼ä',
-  `taskStatus` varchar(16) NOT NULL COMMENT 'ÈÎÎñ×´Ì¬',
-  `failcount` int(10) DEFAULT NULL COMMENT 'Ê§°ÜÍ³¼ÆÊı',
-  `failReason` varchar(64) DEFAULT NULL COMMENT 'Ê§°Ü´íÎóÃèÊö',
-  `createTime` bigint(13) NOT NULL COMMENT '´´½¨Ê±¼ä',
-  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT '×î½üĞŞ¸ÄÊ±¼ä',
+  `taskNo` varchar(64) NOT NULL COMMENT 'ä»»åŠ¡åºåˆ—å·',
+  `timeKeyValue` varchar(32) DEFAULT NULL COMMENT 'ä»»åŠ¡key',
+  `executeTime` bigint(13) NOT NULL COMMENT 'æ‰§è¡Œæ—¶é—´',
+  `taskStatus` varchar(16) NOT NULL COMMENT 'ä»»åŠ¡çŠ¶æ€',
+  `failcount` int(10) DEFAULT NULL COMMENT 'å¤±è´¥æ¬¡æ•°',
+  `failReason` varchar(64) DEFAULT NULL COMMENT 'å¤±è´¥åŸå› ',
+  `createTime` bigint(13) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT 'æœ€åä¿®æ”¹æ—¶é—´',
   PRIMARY KEY (`id`),
   KEY `idx_task_records_taskno` (`taskNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='¶¨Ê±ÈÎÎñÖ´ĞĞÇé¿ö¼ÇÂ¼±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='id';
 
 
 -- ----------------------------
@@ -47,10 +47,10 @@ CREATE TABLE `quartz_task_records` (
 DROP TABLE IF EXISTS `quartz_task_errors`;
 CREATE TABLE `quartz_task_errors` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `taskExecuteRecordId` varchar(64) NOT NULL COMMENT 'ÈÎÎñÖ´ĞĞ¼ÇÂ¼Id',
-  `errorKey` varchar(1024) NOT NULL COMMENT 'ĞÅÏ¢¹Ø¼ü×Ö',
-  `errorValue` text COMMENT 'ĞÅÏ¢ÄÚÈİ',
-  `createTime` bigint(13) NOT NULL COMMENT '´´½¨Ê±¼ä',
-  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT '×î½üĞŞ¸ÄÊ±¼ä',
+  `taskExecuteRecordId` varchar(64) NOT NULL COMMENT 'è®°å½•id',
+  `errorKey` varchar(1024) NOT NULL COMMENT 'é”™è¯¯key',
+  `errorValue` text COMMENT 'é”™è¯¯',
+  `createTime` bigint(13) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `lastModifyTime` bigint(13) DEFAULT NULL COMMENT 'æœ€åä¿®æ”¹æ—¶é—´',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='¶¨Ê±ÈÎÎñ³ö´íÏÖ³¡ĞÅÏ¢±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='id';

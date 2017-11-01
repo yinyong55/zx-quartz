@@ -45,7 +45,7 @@ public class TaskRecordsDaoImpl extends BaseDao implements TaskRecordsDao{
 	
 	public TaskRecordsEntity selectByTaskNoAndStatus(String taskNo){
 		List<TaskRecordsEntity> recordsList = getTemplate().selectList("TaskRecordsMapper.selectByTaskNoAndStatus",taskNo);
-		if(null != recordsList){
+		if(null != recordsList&&recordsList.size()!=0){
 			return recordsList.get(0);
 		}else{
 			return null;
@@ -53,7 +53,7 @@ public class TaskRecordsDaoImpl extends BaseDao implements TaskRecordsDao{
 	}
 	
 	public List<TaskRecordsEntity> getListByTaskNo(String taskNo,int currentPage,String taskStatus){
-		Map paramMap = new HashMap<>();
+		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("taskNo", taskNo);
 		paramMap.put("currentPage", getPageNum(currentPage, 10));
 		if(StringUtils.isNotBlank(taskStatus)){
