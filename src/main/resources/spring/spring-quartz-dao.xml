@@ -11,21 +11,51 @@
     http://www.springframework.org/schema/data/mongo  
     http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 	
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
-		<property name="minPoolSize" value="5" />
-		<property name="maxPoolSize" value="335" />
-		<property name="initialPoolSize" value="10" />
-		<property name="acquireIncrement" value="10" />
-		<property name="acquireRetryAttempts" value="2" />
-		<property name="acquireRetryDelay" value="1000" />
-		<property name="idleConnectionTestPeriod" value="60" />
-		<property name="preferredTestQuery" value="SELECT 1" />
-		<property name="maxIdleTime" value="1800" />
-		<property name="driverClass" value="${quartz.database.driverClassName}" />
-		<property name="jdbcUrl" value="${quartz.database.url}" />
-		<property name="user" value="${quartz.database.username}" />
-		<property name="password" value="${quartz.database.password}" />
+	<!-- 配置数据源-->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName"><value>${jdbc_driverClassName_master}</value></property>
+		<property name="url"><value>${jdbc_url_master}</value></property>
+		<property name="username"><value>${jdbc_username_master}</value></property>
+		<property name="password"><value>${jdbc_password_master}</value></property>
+		<!-- 连接池最大使用连接数 -->
+		<property name="maxActive"><value>${maxActive}</value></property>
+		<!-- 初始化连接大小 -->
+		<property name="initialSize"><value>${initialSize}</value></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait"><value>20000</value></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle"><value>${minIdle}</value></property>
+		<!-- 连接属性 -->
+		<property name="connectionProperties"><value>clientEncoding=UTF-8</value></property>
 	</bean>
+	
+	<!-- 配置线程池-->
+    <bean name="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="15"/>
+        <property name="maxPoolSize" value="25"/>
+        <property name="queueCapacity" value="100"/>
+    </bean>
+	
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!-- 配置调度任务-->
+    <bean name="schedulerFactoryBean" id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <!-- 任务唯一的名称，将会持久化到数据库-->
+        <property name="schedulerName" value="baseScheduler"/>
+        <!-- 每台集群机器部署应用的时候会更新触发器-->
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="applicationContextSchedulerContextKey" value="appli"/>
+        <property name="jobFactory">
+            <bean class="com.zhongxin.quartz.autowired.AutowiringSpringBeanJobFactory"/>
+        </property>
+        <property name="taskExecutor" ref="executor"/>
+
+    </bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

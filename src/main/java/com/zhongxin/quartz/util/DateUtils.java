@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 /**
  * 时间工具类
- * @author chaun.lee
  *
  */
 public class DateUtils extends org.apache.commons.lang.time.DateUtils{

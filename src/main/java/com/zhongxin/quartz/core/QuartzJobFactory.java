@@ -47,7 +47,6 @@ public class QuartzJobFactory implements Job {
 				try {
 					noticeService.sendMQmsg(targetBeanId,executorNo,executeParamter);
 				} catch (Exception e) {
-					// TODO: handle exception
 					logger.error("sendMQmsg send is failed：", e);
 					ai.incrementAndGet();
 					throw e;

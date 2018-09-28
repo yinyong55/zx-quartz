@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  
 /**
  * 消息生产者,用于发送消息
- * @author Mac
+ * @author yinyong
  *
  */ 
 @Service("jmsClient")

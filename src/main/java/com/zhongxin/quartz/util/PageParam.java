@@ -3,8 +3,7 @@ package com.zhongxin.quartz.util;
 /**
 *@ClassName: PageParam
 *@Description: 
-*@author YY 
-*@date 2016年1月25日  上午10:45:43
+*@author yinyong 
 *@version 1.0
 */
 public class PageParam{

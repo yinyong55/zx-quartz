@@ -1,6 +1,5 @@
 /** 
- * Copyright: Copyright (c)2014
- * Company: 支付通(ICardPay) 
+ * Copyright: Copyright (c)2018
  */
 package com.zhongxin.quartz.util;
 
@@ -13,8 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author：eddysheng
- * @since：2014-3-18 上午10:38:36
+ * @since：2018-3-18 上午10:38:36
  * @version:
  */
 public class DateUtil {
@@ -23,7 +21,6 @@ public class DateUtil {
 
 	/**
 	 * 获取昨日秒数
-	 * 
 	 * @return
 	 */
 	public static long getDayBefore(int days) {

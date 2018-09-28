@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Resource;
-
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
@@ -14,12 +13,10 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.stereotype.Service;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.stereotype.Service;
 import com.zhongxin.quartz.core.QuartzJobFactory;
 import com.zhongxin.quartz.dao.TaskErrorsDao;
 import com.zhongxin.quartz.dao.TaskInformationsDao;
@@ -48,8 +45,10 @@ public class QuartzServiceImpl implements QuartzService{
 	private TaskRecordsDao recordsDao;
 	@Resource
 	private TaskErrorsDao taskErrorsDao;
-	@Autowired
-	SchedulerFactoryBean schedulerBean;
+	@Resource(name="schedulerFactoryBean")
+	private Scheduler scheduler;
+	
+	
 	@Resource
 	private NoticeService noticeService;
 	
@@ -57,7 +56,7 @@ public class QuartzServiceImpl implements QuartzService{
 
 	public void initScheduler(){
 		List<TaskInformationsEntity> taskList = taskInformationsDao.getTaskList();
-		Scheduler scheduler = schedulerBean.getScheduler();
+//		Scheduler scheduler = schedulerBean.getScheduler();
 		for(TaskInformationsEntity task : taskList){
 			try {
 				this.scheduler(task, scheduler);
@@ -75,7 +74,7 @@ public class QuartzServiceImpl implements QuartzService{
 	public String addScheduler(String key){
 		TaskInformationsEntity entity = taskInformationsDao.getTaskByTaskNo(key);
 		if(null != entity){
-			Scheduler scheduler = schedulerBean.getScheduler();
+//			Scheduler scheduler = schedulerBean.getScheduler();
 			try {
 				scheduler.deleteJob(new JobKey(key));
 				this.scheduler(entity, scheduler);
@@ -101,7 +100,7 @@ public class QuartzServiceImpl implements QuartzService{
 	public String delScheduler(String key){
 		TaskInformationsEntity entity = taskInformationsDao.getTaskByTaskNo(key);
 		if(null != entity && TaskStatusEnum.UNFROZEN == entity.getFrozenStatus()){
-			Scheduler scheduler = schedulerBean.getScheduler();
+//			Scheduler scheduler = schedulerBean.getScheduler();
 			try {
 				scheduler.deleteJob(new JobKey(key));
 				entity.setFrozenStatus(TaskStatusEnum.FROZEN);
@@ -124,7 +123,7 @@ public class QuartzServiceImpl implements QuartzService{
 	public String resumeScheduler(String key){
 		TaskInformationsEntity entity = taskInformationsDao.getTaskByTaskNo(key);
 		if(null != entity){
-			Scheduler scheduler = schedulerBean.getScheduler();
+//			Scheduler scheduler = schedulerBean.getScheduler();
 			try {
 				scheduler.deleteJob(new JobKey(key));
 				this.scheduler(entity, scheduler);
@@ -144,7 +143,7 @@ public class QuartzServiceImpl implements QuartzService{
 	 */
 	public String resumeSchedulerAll(){
 		List<TaskInformationsEntity> taskList = taskInformationsDao.getTaskList();
-		Scheduler scheduler = schedulerBean.getScheduler();
+//		Scheduler scheduler = schedulerBean.getScheduler();
 		try {
 			scheduler.clear();
 		} catch (SchedulerException e1) {
@@ -362,7 +361,7 @@ public class QuartzServiceImpl implements QuartzService{
 			count = taskInformationsDao.updateById(entity);
 			if(count > 0){
 				// 重新装载定时器
-				Scheduler scheduler = schedulerBean.getScheduler();
+//				Scheduler scheduler = schedulerBean.getScheduler();
 				try {
 					scheduler.deleteJob(new JobKey(entity.getTaskNo()));
 					if(TaskStatusEnum.UNFROZEN == entity.getFrozenStatus()){

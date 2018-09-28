@@ -1,12 +1,10 @@
 /** 
- * Copyright: Copyright (c)2014
- * Company: 支付通(ICardPay) 
+ * Copyright: Copyright (c)2018
  */
 package com.zhongxin.quartz.enums;
 
 /**
- * @author：eddysheng
- * @since：2014-3-7 下午2:53:29
+ * @since：2018-3-7 下午2:53:29
  * @version:
  */
 public enum TaskStatusEnum {

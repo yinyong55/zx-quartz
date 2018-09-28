@@ -25,8 +25,6 @@ public class NoticeServiceImpl implements NoticeService{
 	private Destination quartzTopic;
 	
 	/**
-	 * @author ZQ
-	 * @date 2016-2-26
 	 * @param targetBeanId
 	 * @param executorNo
 	 * @param executeParamter
@@ -49,8 +47,6 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	
 	/**
-	 * @author ZQ
-	 * @date 2016-2-26
 	 * @param executeParamter
 	 * @param url
 	 */

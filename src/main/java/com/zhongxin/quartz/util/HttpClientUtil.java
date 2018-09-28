@@ -23,7 +23,7 @@ import org.apache.http.util.EntityUtils;
  * 
  *<p>Title:HttpClientUtil.java</p>
  *<p>Description:http工具类</p>
- *<p>Copyright:Copyright (c) 2010</p>
+ *<p>Copyright:Copyright (c) 2018</p>
  */
 public class HttpClientUtil {
 

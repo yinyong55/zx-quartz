@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.zhongxin.quartz.service.QuartzService;
-
+/**
+ * 动态初始化组装
+ */
 @Component
 public class DynamicJobAssembler {
 
