@@ -10,7 +10,7 @@
   		select 
   			id,<include refid="recordsInfo"/>
   		from 
-  			quartz_task_records 
+  			t_qrtz_task_records 
   		where 
   			taskNo = #{taskNo} and
   			timeKeyValue = #{timeKeyValue}
@@ -26,7 +26,7 @@
   			failcount,
   			TIME_FORMAT(TIMEDIFF(FROM_UNIXTIME(FLOOR(lastModifyTime/1000),'%Y-%m-%d %H:%i:%s'),FROM_UNIXTIME(FLOOR(createTime/1000),'%Y-%m-%d %H:%i:%s')),'%H:%i:%s') as time
   		from
-  			quartz_task_records 
+  			t_qrtz_task_records 
   		where
   			taskNo = #{taskNo}
   			<if test="taskStatus != null and taskStatus != ''">
@@ -40,7 +40,7 @@
   		select
   			count(1) as count
   		from
-  			quartz_task_records
+  			t_qrtz_task_records
   		where
   			taskNo = #{taskNo}
   			<if test="taskStatus != null and taskStatus != ''">
@@ -52,7 +52,7 @@
   		select 
   			id,<include refid="recordsInfo"/>
   		from 
-  			quartz_task_records 
+  			t_qrtz_task_records 
   		where 
   			taskNo = #{taskNo} and
   			taskStatus = 'INIT'
@@ -60,7 +60,7 @@
   	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskRecordsEntity" >
-		insert into quartz_task_records
+		insert into t_qrtz_task_records
 		(
 			<include refid="recordsInfo"/>
 		) 
@@ -79,7 +79,7 @@
 	
 	<update id="updateById" parameterType="com.quartz.entity.TaskRecordsEntity">
 		update
-			quartz_task_records
+			t_qrtz_task_records
 		set
 			failcount = #{failcount},
 			taskStatus = #{taskStatus},

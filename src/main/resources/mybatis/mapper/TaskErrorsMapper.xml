@@ -7,7 +7,7 @@
 	</sql>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskErrorsEntity" >
-		insert into quartz_task_errors
+		insert into t_qrtz_task_errors
 		(
 			<include refid="errorsInfo"/>
 		) 
@@ -26,7 +26,7 @@
 			errorKey,
 			errorValue
 		from
-			quartz_task_errors
+			t_qrtz_task_errors
 		where
 			taskExecuteRecordId = #{recordId}
 	</select>

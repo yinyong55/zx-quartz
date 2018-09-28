@@ -11,7 +11,7 @@
   		select 
   			id,<include refid="taskInfo"/>
   		from 
-  			quartz_task_informations 
+  			t_qrtz_task_informations 
   		where 
   			frozenStatus = 'UNFROZEN'
   	</select>
@@ -30,7 +30,7 @@
   			timeKey,
   			FROM_UNIXTIME(FLOOR(lastModifyTime/1000),'%Y-%m-%d %H:%i:%s') as lastModifyTime
   		from 
-  			quartz_task_informations
+  			t_qrtz_task_informations
 		order by frozenStatus desc,lastModifyTime desc
 		limit #{currentPage},10
   	</select>
@@ -54,7 +54,7 @@
   			(select FROM_UNIXTIME(FLOOR(executeTime/1000),'%Y-%m-%d %H:%i:%s') from quartz_task_records r where r.taskNo = i.taskNo order by executeTime desc limit 1) as preExecuteTime,
   			(select case taskStatus when 'SUCCESS' then '成功' when 'FAILED' then '失败' when 'INIT' then '初始' else '' end from quartz_task_records r where r.taskNo = i.taskNo order by executeTime desc limit 1) as taskStatus
   		from 
-  			quartz_task_informations i
+  			t_qrtz_task_informations i
 		where
 			taskNo = #{taskNo}
   	</select>
@@ -63,14 +63,14 @@
   		select
   			count(1)
   		from
-  			quartz_task_informations 
+  			t_qrtz_task_informations 
   	</select>
   	
   	<select id="selectByTaskNo" parameterType="String" resultType="com.quartz.entity.TaskInformationsEntity">
   		select 
   			id,<include refid="taskInfo"/>
   		from 
-  			quartz_task_informations 
+  			t_qrtz_task_informations 
   		where 
   			taskNo = #{taskNo}
   	</select>
@@ -79,13 +79,13 @@
   		select
   			id,<include refid="taskInfo"/>
   		from
-  			quartz_task_informations
+  			t_qrtz_task_informations
   		where 
   			id = #{id,jdbcType=BIGINT}
   	</select>
   	
   	<insert id="addTaskInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskInformationsEntity" >
-  		insert into quartz_task_informations
+  		insert into t_qrtz_task_informations
   		(
   			<include refid="taskInfo"/>
   		)
@@ -110,7 +110,7 @@
   	
   	<update id="updateById" parameterType="com.quartz.entity.TaskInformationsEntity">
   		update
-  			quartz_task_informations
+  			t_qrtz_task_informations
   		set
   			<if test="null != frozenStatus">
   				frozenStatus = #{frozenStatus},
