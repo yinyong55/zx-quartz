@@ -51,7 +51,7 @@
         <property name="overwriteExistingJobs" value="true"/>
         <property name="applicationContextSchedulerContextKey" value="appli"/>
         <property name="jobFactory">
-            <bean class="com.zhongxin.quartz.autowired.AutowiringSpringBeanJobFactory"/>
+            <bean class="com.quartz.autowired.AutowiringSpringBeanJobFactory"/>
         </property>
         <property name="taskExecutor" ref="executor"/>
 

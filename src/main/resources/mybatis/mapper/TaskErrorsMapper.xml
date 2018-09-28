@@ -6,7 +6,7 @@
 		taskExecuteRecordId,errorKey,errorValue,createTime,lastModifyTime
 	</sql>
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zhongxin.quartz.entity.TaskErrorsEntity" >
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskErrorsEntity" >
 		insert into quartz_task_errors
 		(
 			<include refid="errorsInfo"/>

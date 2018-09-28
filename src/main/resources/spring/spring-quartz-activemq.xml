@@ -58,7 +58,7 @@
 		</constructor-arg>
 	</bean>
 	
-	<bean id="taskReturnListener" class="com.zhongxin.quartz.listener.TaskReturnListener"/>
+	<bean id="taskReturnListener" class="com.quartz.listener.TaskReturnListener"/>
 	<bean id="quartzListenerContainer"	class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="targetConnectionFactory" />
 		<property name="destination" ref="taskReturnQueue" />

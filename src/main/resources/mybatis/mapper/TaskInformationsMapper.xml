@@ -7,7 +7,7 @@
 		createTime,lastModifyTime,url,executeParamter,timeKey
 	</sql> 
   
-	<select id="selectTaskInfoList" resultType="com.zhongxin.quartz.entity.TaskInformationsEntity">
+	<select id="selectTaskInfoList" resultType="com.quartz.entity.TaskInformationsEntity">
   		select 
   			id,<include refid="taskInfo"/>
   		from 
@@ -16,7 +16,7 @@
   			frozenStatus = 'UNFROZEN'
   	</select>
   	
-  	<select id="selectAll" parameterType="HashMap" resultType="com.zhongxin.quartz.vo.TaskInformationsVo">
+  	<select id="selectAll" parameterType="HashMap" resultType="com.quartz.vo.TaskInformationsVo">
   		select 
   			id,
   			taskNo,
@@ -35,7 +35,7 @@
 		limit #{currentPage},10
   	</select>
   	
-  	<select id="selectDetail" parameterType="String" resultType="com.zhongxin.quartz.vo.TaskInformationsDetailVo">
+  	<select id="selectDetail" parameterType="String" resultType="com.quartz.vo.TaskInformationsDetailVo">
   		select 
   			id,
   			taskNo,
@@ -66,7 +66,7 @@
   			quartz_task_informations 
   	</select>
   	
-  	<select id="selectByTaskNo" parameterType="String" resultType="com.zhongxin.quartz.entity.TaskInformationsEntity">
+  	<select id="selectByTaskNo" parameterType="String" resultType="com.quartz.entity.TaskInformationsEntity">
   		select 
   			id,<include refid="taskInfo"/>
   		from 
@@ -75,7 +75,7 @@
   			taskNo = #{taskNo}
   	</select>
   	
-  	<select id="selectById" parameterType="long" resultType="com.zhongxin.quartz.entity.TaskInformationsEntity">
+  	<select id="selectById" parameterType="long" resultType="com.quartz.entity.TaskInformationsEntity">
   		select
   			id,<include refid="taskInfo"/>
   		from
@@ -84,7 +84,7 @@
   			id = #{id,jdbcType=BIGINT}
   	</select>
   	
-  	<insert id="addTaskInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.zhongxin.quartz.entity.TaskInformationsEntity" >
+  	<insert id="addTaskInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskInformationsEntity" >
   		insert into quartz_task_informations
   		(
   			<include refid="taskInfo"/>
@@ -108,7 +108,7 @@
   		)
   	</insert>
   	
-  	<update id="updateById" parameterType="com.zhongxin.quartz.entity.TaskInformationsEntity">
+  	<update id="updateById" parameterType="com.quartz.entity.TaskInformationsEntity">
   		update
   			quartz_task_informations
   		set

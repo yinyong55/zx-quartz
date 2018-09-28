@@ -6,7 +6,7 @@
 		taskNo,timeKeyValue,executeTime,taskStatus,failcount,failReason,createTime,lastModifyTime
 	</sql>
   	
-  	<select id="selectByTaskNo" parameterType="HashMap" resultType="com.zhongxin.quartz.entity.TaskRecordsEntity">
+  	<select id="selectByTaskNo" parameterType="HashMap" resultType="com.quartz.entity.TaskRecordsEntity">
   		select 
   			id,<include refid="recordsInfo"/>
   		from 
@@ -16,7 +16,7 @@
   			timeKeyValue = #{timeKeyValue}
   	</select>
   	
-  	<select id="selectListByTaskNo" parameterType="HashMap" resultType="com.zhongxin.quartz.entity.TaskRecordsEntity">
+  	<select id="selectListByTaskNo" parameterType="HashMap" resultType="com.quartz.entity.TaskRecordsEntity">
   		select
   			id,
   			taskNo,
@@ -48,7 +48,7 @@
   			</if>
   	</select>
   	
-  	<select id="selectByTaskNoAndStatus" parameterType="String" resultType="com.zhongxin.quartz.entity.TaskRecordsEntity">
+  	<select id="selectByTaskNoAndStatus" parameterType="String" resultType="com.quartz.entity.TaskRecordsEntity">
   		select 
   			id,<include refid="recordsInfo"/>
   		from 
@@ -59,7 +59,7 @@
   		order by createTime desc
   	</select>
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zhongxin.quartz.entity.TaskRecordsEntity" >
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.quartz.entity.TaskRecordsEntity" >
 		insert into quartz_task_records
 		(
 			<include refid="recordsInfo"/>
@@ -77,7 +77,7 @@
 		)
 	</insert>
 	
-	<update id="updateById" parameterType="com.zhongxin.quartz.entity.TaskRecordsEntity">
+	<update id="updateById" parameterType="com.quartz.entity.TaskRecordsEntity">
 		update
 			quartz_task_records
 		set
