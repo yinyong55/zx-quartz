@@ -4,6 +4,7 @@ import com.quartz.enums.StatusEnum;
 
 public class TaskRecordsEntity extends Entity {
 
+	private static final long serialVersionUID = -7447509069278033471L;
 	private Long id;
 	private String taskNo;
 	private String timeKeyValue;

@@ -1,7 +1,7 @@
 package com.quartz.entity;
 
 public class TaskErrorsEntity extends Entity{
-
+	private static final long serialVersionUID = 7340150084937262786L;
 	private long id;
 	private String taskExecuteRecordId;
 	private String errorKey;

@@ -6,8 +6,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Entity implements Serializable{
 
-	/** serialVersionUID*/
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 4930270770196978896L;
 
 	@Override
 	public String toString() {

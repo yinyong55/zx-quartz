@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.quartz.dao.TaskErrorsDao;
-import com.quartz.entity.TaskErrorsEntity;
 import com.quartz.service.TaskErrorsService;
 @Service
 public class TaskErrorsServiceImpl implements TaskErrorsService{
